@@ -33,7 +33,7 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_sort_atom
-    atom = [{"entry"=>{"title"=>"Firsr title", "updated"=>"Thu, 05 Mar 2015 14:56:47 +0000"}},
+    atom =[{"entry"=>{"title"=>"Firsr title", "updated"=>"Thu, 05 Mar 2015 14:56:47 +0000"}},
            {"entry"=>{"title"=>"Second title", "updated"=>"Wed, 25 Mar 2015 12:05:14 +0000"}},
            {"entry"=>{"title"=>"Third", "updated"=>"Thu, 03 Jan 2019 09:37:13 +0000"}}]
     atom_sort = SortForAtom.call(atom)
@@ -44,9 +44,9 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_sort_rss
-    rss = [{"item"=>{"title"=>"Firsr title", "pubDate"=>"Thu, 05 Mar 2015 14:56:47 +0000"}},
-            {"item"=>{"title"=>"Second title", "pubDate"=>"Wed, 25 Mar 2015 12:05:14 +0000"}},
-            {"item"=>{"title"=>"Third", "pubDate"=>"Thu, 03 Jan 2019 09:37:13 +0000"}}]
+    rss = [{ "item"=>{ "title"=>"Firsr title", "pubDate"=>"Thu, 05 Mar 2015 14:56:47 +0000" }},
+           { "item"=>{ "title"=>"Second title", "pubDate"=>"Wed, 25 Mar 2015 12:05:14 +0000" }},
+           { "item"=>{ "title"=>"Third", "pubDate"=>"Thu, 03 Jan 2019 09:37:13 +0000" }}]
     rss_sort = SortForRss.call(rss)
     sort_date = rss.sort! do |first_item, second_item|
       first_item['item']['pubDate'] <=> second_item['item']['pubDate']
@@ -55,7 +55,7 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_in_rss_out_atom
-    options = {:reader=>"atom"}
+    options = { :reader=>"atom" }
     feed = FileReader.read('test/fixtures/rss')
     DataReaderForRss.new.call(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }
@@ -63,7 +63,7 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_in_rss_out_rss
-    options = {:reader=>"rss"}
+    options = { :reader=>"rss" }
     feed = FileReader.read('test/fixtures/rss')
     DataReaderForRss.new.call(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }
@@ -71,7 +71,7 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_in_atom_out_rss
-    options = {:reader=>"rss"}
+    options = { :reader=>"rss" }
     feed = FileReader.read('test/fixtures/atom')
     DataReaderForAtom.new.call(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }
@@ -79,10 +79,46 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_in_atom_out_atom
-    options = {:reader=>"atom"}
+    options = { :reader=>"atom" }
     feed = FileReader.read('test/fixtures/atom')
     DataReaderForAtom.new.call(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }
     assert_equal out.xpath('/rss').present? , false
+  end
+
+  def test_flag_reverse_atom
+    options = { reverse: true, reader: "atom" }
+    result = File.read('test/fixtures/option/reverse_atom')
+    feed = UrlReader.read('https://ru.hexlet.io/lessons.rss')
+    DataReaderForRss.new.call(options, feed)
+    out = File.read('output')
+    assert_equal out,result
+  end
+
+  def test_flag_reverse_rss
+    options = { reverse: true, reader: "rss" }
+    result = File.read('test/fixtures/option/reverse_rss')
+    feed = UrlReader.read('https://ru.hexlet.io/lessons.rss')
+    DataReaderForRss.new.call(options, feed)
+    out = File.read('output')
+    assert_equal out,result
+  end
+
+  def test_flag_sort_atom
+    options = { sort: true, reader: "atom" }
+    result = File.read('test/fixtures/option/sort_atom')
+    feed = UrlReader.read('https://ru.hexlet.io/lessons.rss')
+    DataReaderForRss.new.call(options, feed)
+    out = File.read('output')
+    assert_equal out,result
+  end
+
+  def test_flag_sort_rss
+    options = { sort: true, reader: "rss" }
+    result = File.read('test/fixtures/option/sort_rss')
+    feed = UrlReader.read('https://ru.hexlet.io/lessons.rss')
+    DataReaderForRss.new.call(options, feed)
+    out = File.read('output')
+    assert_equal out,result
   end
 end

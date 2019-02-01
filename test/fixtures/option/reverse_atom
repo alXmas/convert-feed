@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Новые уроки на Хекслете</title>
+  <link href="https://ru.hexlet.io/"/>
+  <entry>
+    <title>Promise.all / JS: Асинхронное программирование</title>
+    <summary>Цель: Научиться выполнять промисы параллельно</summary>
+    <updated>Mon, 24 Dec 2018 12:30:58 +0000</updated>
+    <link href="https://ru.hexlet.io/courses/js-asynchronous-programming/lessons/promise-all/theory_unit"/>
+  </entry>
+  <entry>
+    <title>Обработка ошибок в промисах / JS: Асинхронное программирование</title>
+    <summary>Цель: Научиться правильно обрабатывать ошибки в цепочках</summary>
+    <updated>Mon, 24 Dec 2018 12:31:03 +0000</updated>
+    <link href="https://ru.hexlet.io/courses/js-asynchronous-programming/lessons/promises-catch/theory_unit"/>
+  </entry>
+  <entry>
+    <title>new Promise / JS: Асинхронное программирование</title>
+    <summary>Цель: Научиться создавать промисы из колбеков</summary>
+    <updated>Thu, 27 Dec 2018 07:48:46 +0000</updated>
+    <link href="https://ru.hexlet.io/courses/js-asynchronous-programming/lessons/new-promise/theory_unit"/>
+  </entry>
+  <entry>
+    <title>Async/Await / JS: Асинхронное программирование</title>
+    <summary>Цель: Познакомиться с самым современным способом писать асинхронный код как синхронный</summary>
+    <updated>Thu, 27 Dec 2018 07:48:50 +0000</updated>
+    <link href="https://ru.hexlet.io/courses/js-asynchronous-programming/lessons/async-await/theory_unit"/>
+  </entry>
+  <entry>
+    <title>Публикация пакета / JS: Настройка окружения</title>
+    <summary>Цель: Познакомиться с семантическим версионированием и публикацией пакета</summary>
+    <updated>Thu, 03 Jan 2019 09:36:50 +0000</updated>
+    <link href="https://ru.hexlet.io/courses/js-setup-environment/lessons/publish/theory_unit"/>
+  </entry>
+  <entry>
+    <title>Зависимости / JS: Настройка окружения</title>
+    <summary>Цель: Познакомиться с понятием "зависимости" и научиться ими пользоваться</summary>
+    <updated>Thu, 03 Jan 2019 09:37:08 +0000</updated>
+    <link href="https://ru.hexlet.io/courses/js-setup-environment/lessons/dependencies/theory_unit"/>
+  </entry>
+  <entry>
+    <title>NPX / JS: Настройка окружения</title>
+    <summary>Цель: Научиться запускать локально установленные пакеты-утилиты</summary>
+    <updated>Thu, 03 Jan 2019 09:37:13 +0000</updated>
+    <link href="https://ru.hexlet.io/courses/js-setup-environment/lessons/npx/theory_unit"/>
+  </entry>
+  <entry>
+    <title>Pipeline challenge / Главные испытания</title>
+    <summary>Цель: Написать клиент, реализующий передачу сообщений в условиях канала передачи с помехами.</summary>
+    <updated>Wed, 21 Jan 2015 08:59:51 +0000</updated>
+    <link href="https://ru.hexlet.io/courses/main/lessons/pipeline/theory_unit"/>
+  </entry>
+  <entry>
+    <title>Ареалы проживания членистоногих. Конкурс по функциональному программированию 03.2015. / Главные испытания</title>
+    <summary>Цель: Получить сатисфакцию</summary>
+    <updated>Thu, 05 Mar 2015 14:56:47 +0000</updated>
+    <link href="https://ru.hexlet.io/courses/main/lessons/functional-contest-03-2015/theory_unit"/>
+  </entry>
+  <entry>
+    <title>Rails для начинающих / Фреймворки</title>
+    <summary>Цель: Научиться работать с фреймворком Rails</summary>
+    <updated>Wed, 25 Mar 2015 12:05:14 +0000</updated>
+    <link href="https://ru.hexlet.io/courses/frameworks/lessons/rails_getting_started/theory_unit"/>
+  </entry>
+</feed>
