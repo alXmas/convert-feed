@@ -1,7 +1,5 @@
 require 'rubygems'
 require 'atom'
-require 'nokogiri'
-require 'open-uri'
 
 class AtomBuilderForAtom
   def self.builder(data, feed)

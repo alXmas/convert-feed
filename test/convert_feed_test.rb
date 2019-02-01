@@ -1,15 +1,16 @@
 require_relative 'test_helper'
 
+
 class ConvertFeedTest < Minitest::Test
   def test_rss_file_reader
-    rss_sourse = 'test/fixtures/reader/rss'
+    rss_sourse = 'test/fixtures/rss'
     rss_feed = File.open(rss_sourse) { |f| Nokogiri::XML(f) }
     rss_file = FileReader.read(rss_sourse)
     assert_equal rss_feed.text, rss_file.text
   end
 
   def test_atom_file_reader
-    atom_sourse ='test/fixtures/reader/atom'
+    atom_sourse ='test/fixtures/atom'
     atom_feed = File.open(atom_sourse) { |f| Nokogiri::XML(f) }
     atom_file = FileReader.read(atom_sourse)
     assert_equal atom_feed.text, atom_file.text
@@ -51,5 +52,37 @@ class ConvertFeedTest < Minitest::Test
       first_item['item']['pubDate'] <=> second_item['item']['pubDate']
     end
     assert_equal sort_date, rss_sort
+  end
+
+  def test_in_rss_out_atom
+    options = {:reader=>"atom"}
+    feed = FileReader.read('test/fixtures/rss')
+    DataReaderForRss.new.call(options, feed)
+    out = File.open('output') { |f| Nokogiri::XML(f) }
+    assert_equal out.xpath('/rss').present? , false
+  end
+
+  def test_in_rss_out_rss
+    options = {:reader=>"rss"}
+    feed = FileReader.read('test/fixtures/rss')
+    DataReaderForRss.new.call(options, feed)
+    out = File.open('output') { |f| Nokogiri::XML(f) }
+    assert_equal out.xpath('/rss').present? , true
+  end
+
+  def test_in_atom_out_rss
+    options = {:reader=>"rss"}
+    feed = FileReader.read('test/fixtures/atom')
+    DataReaderForAtom.new.call(options, feed)
+    out = File.open('output') { |f| Nokogiri::XML(f) }
+    assert_equal out.xpath('/rss').present? , true
+  end
+
+  def test_in_atom_out_atom
+    options = {:reader=>"atom"}
+    feed = FileReader.read('test/fixtures/atom')
+    DataReaderForAtom.new.call(options, feed)
+    out = File.open('output') { |f| Nokogiri::XML(f) }
+    assert_equal out.xpath('/rss').present? , false
   end
 end
