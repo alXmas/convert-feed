@@ -6,7 +6,7 @@
 Usage: /usr/local/bin/convert-feed [options]
     -r, --[no-]reverse               Revers items
     -s, --[no-]sort                  SortForRss items
-    -o, --out FORMAT                 Output feed format: atom/out_rss 
+    -o, --out FORMAT                 Output feed format: atom/rss 
     -h, --help                       Show help message
     
 ```
