@@ -13,7 +13,7 @@ Usage: /usr/local/bin/convert-feed [options]
 
 Вывод результата просиходит в STDOUT и в файл `output`. Исходный feed может быть локальным файлом, так и http адресом по которому нужно его забрать.
 
-##Примеры:
+## Примеры использования:
 ```
 $ convert-feed --out rss feed.xml
 $ convert-feed --out atom https://ru.hexlet.io/lessons.rss
