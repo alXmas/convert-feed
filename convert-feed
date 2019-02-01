@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+require_relative 'helper'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
+  opts.on("-r", "--[no-]reverse", "Revers items") do |r|
+    options[:reverse] = r
+  end
+  opts.on("-s", "--[no-]sort", "SortForRss items") do |s|
+    options[:sort] = s
+  end
+  opts.on("-o", '--out FORMAT', 'Output feed format: atom/out_rss ') do |type|
+    options[:reader] = type.downcase
+  end
+  opts.on('-h', '--help', 'Show help message') do ||
+    puts opts
+  end
+end.parse!
+
+abort('Missing file or url') if ARGV.empty?
+
+feed = File.exist?(ARGV.first) ? FileReader.read(ARGV.first) : UrlReader.read(ARGV.first)
+
+if feed.xpath('/rss').present? == true
+  DataReaderForRss.new.call(options, feed)
+elsif feed.xpath('/rss').present? == false
+  DataReaderForAtom.new.call(options,feed)
+end
