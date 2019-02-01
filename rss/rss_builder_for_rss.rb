@@ -16,5 +16,6 @@ class RssBuilderForRss
       end
     end
     File.open('output', 'w') { |file| file.write(rss) }
+    puts rss
   end
 end

@@ -16,5 +16,6 @@ class AtomBuilderForRss
         end
     end
     File.open('output', 'w') { |file| file.write(atom.to_xml) }
+    puts atom.to_xml
   end
 end
