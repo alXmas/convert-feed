@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support/core_ext/hash/conversions'
 
 class DataReaderForRss
@@ -9,24 +11,24 @@ class DataReaderForRss
     if options[:reader] == 'atom'
       if (options[:sort] == true && options[:reverse] == true) || options[:sort] == true
         sort_date = SortForRss.call(date)
-        AtomBuilderForRss.builder(sort_date, feed)
+        AtomBuilderForRss.build(sort_date, feed)
       elsif options[:reverse] == true
         reverse_date = Reverse.call(date)
-        AtomBuilderForRss.builder(reverse_date, feed)
+        AtomBuilderForRss.build(reverse_date, feed)
       else
-        AtomBuilderForRss.builder(date,feed)
+        AtomBuilderForRss.build(date, feed)
       end
     end
 
     if options[:reader] == 'rss'
       if (options[:sort] == true && options[:reverse] == true) || options[:sort] == true
         sort_date = SortForRss.call(date)
-        RssBuilderForRss.builder(sort_date, feed)
+        RssBuilderForRss.build(sort_date, feed)
       elsif options[:reverse] == true
         reverse_date = Reverse.call(date)
-        RssBuilderForRss.builder(reverse_date, feed)
+        RssBuilderForRss.build(reverse_date, feed)
       else
-        RssBuilderForRss.builder(date,feed)
+        RssBuilderForRss.build(date, feed)
       end
     end
   end

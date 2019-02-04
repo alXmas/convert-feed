@@ -1,8 +1,10 @@
-require "rss"
+# frozen_string_literal: true
+
+require 'rss'
 
 class RssBuilderForAtom
-  def self.builder(date, feed)
-    rss = RSS::Maker.make("2.0") do |maker|
+  def self.build(date, feed)
+    rss = RSS::Maker.make('2.0') do |maker|
       maker.channel.title = feed.xpath('//xmlns:title').first.content
       maker.channel.link = ''
       maker.channel.description = ''

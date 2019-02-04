@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 require 'optparse'
-require "rss"
+require 'rss'
 require_relative 'rss/data_reader_for_rss'
 require_relative 'reader/file_reader'
 require_relative 'reader/url_reader'

@@ -1,8 +1,10 @@
-require "rss"
+# frozen_string_literal: true
+
+require 'rss'
 
 class RssBuilderForRss
-  def self.builder(date, feed)
-    rss = RSS::Maker.make("2.0") do |maker|
+  def self.build(date, feed)
+    rss = RSS::Maker.make('2.0') do |maker|
       maker.channel.title = feed.xpath('//title').first.text
       maker.channel.link = feed.xpath('//link').first.text
       maker.channel.description = feed.xpath('//description').first.text

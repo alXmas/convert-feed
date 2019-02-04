@@ -58,11 +58,11 @@
       <dc:date>2019-01-03T09:37:13+00:00</dc:date>
     </item>
     <item>
-      <title>Pipeline challenge / Главные испытания</title>
-      <link>https://ru.hexlet.io/courses/main/lessons/pipeline/theory_unit</link>
-      <description>Цель: Написать клиент, реализующий передачу сообщений в условиях канала передачи с помехами.</description>
-      <pubDate>Wed, 21 Jan 2015 08:59:51 +0000</pubDate>
-      <dc:date>2015-01-21T08:59:51+00:00</dc:date>
+      <title>Rails для начинающих / Фреймворки</title>
+      <link>https://ru.hexlet.io/courses/frameworks/lessons/rails_getting_started/theory_unit</link>
+      <description>Цель: Научиться работать с фреймворком Rails</description>
+      <pubDate>Wed, 25 Mar 2015 12:05:14 +0000</pubDate>
+      <dc:date>2015-03-25T12:05:14+00:00</dc:date>
     </item>
     <item>
       <title>Ареалы проживания членистоногих. Конкурс по функциональному программированию 03.2015. / Главные испытания</title>
@@ -72,11 +72,11 @@
       <dc:date>2015-03-05T14:56:47+00:00</dc:date>
     </item>
     <item>
-      <title>Rails для начинающих / Фреймворки</title>
-      <link>https://ru.hexlet.io/courses/frameworks/lessons/rails_getting_started/theory_unit</link>
-      <description>Цель: Научиться работать с фреймворком Rails</description>
-      <pubDate>Wed, 25 Mar 2015 12:05:14 +0000</pubDate>
-      <dc:date>2015-03-25T12:05:14+00:00</dc:date>
+      <title>Pipeline challenge / Главные испытания</title>
+      <link>https://ru.hexlet.io/courses/main/lessons/pipeline/theory_unit</link>
+      <description>Цель: Написать клиент, реализующий передачу сообщений в условиях канала передачи с помехами.</description>
+      <pubDate>Wed, 21 Jan 2015 08:59:51 +0000</pubDate>
+      <dc:date>2015-01-21T08:59:51+00:00</dc:date>
     </item>
   </channel>
 </rss>
