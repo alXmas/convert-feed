@@ -15,6 +15,7 @@ GEM
     rainbow (3.0.0)
     ratom (0.9.0)
       libxml-ruby (~> 2.6)
+    require_all (2.0.0)
     rubocop (0.63.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -33,6 +34,7 @@ DEPENDENCIES
   minitest
   nokogiri
   ratom
+  require_all
   rubocop
 
 RUBY VERSION
