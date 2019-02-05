@@ -114,7 +114,7 @@ class ConvertFeedTest < Minitest::Test
   def test_flag_sort_atom
     options = { sort: true, reader: 'atom' }
     result = File.read('test/fixtures/option/sort_atom')
-    feed = UrlReader.read('https://ru.hexlet.io/lessons.rss')
+      feed = UrlReader.read('https://ru.hexlet.io/lessons.rss')
     DataReaderForRss.new.call(options, feed)
     out = File.read('output')
     assert_equal out, result
