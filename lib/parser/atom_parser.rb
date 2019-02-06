@@ -14,6 +14,8 @@ module AtomParser
     body.each { |elem| elem['DataTime'] = elem.delete('updated') }
     body.each { |elem| elem['Text'] = elem.delete('summary') }
     body.each { |elem| elem['link'] = elem['link']['href']}
+  rescue
+    puts 'Cant parse body'
   end
 
   def self.head(feed)
@@ -21,5 +23,7 @@ module AtomParser
     head << feed.xpath('//xmlns:title').first
     head << "<link>#{feed.xpath('//xmlns:link').first['href']}</link>"
     head.map { |element| Hash.from_xml(element.to_s) }
+  rescue
+    puts 'Cant parse head'
   end
 end

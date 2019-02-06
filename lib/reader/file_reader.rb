@@ -9,5 +9,7 @@ module FileReader
 
   def self.call(source)
     File.open(source) { |f| Nokogiri::XML(f) }
+  rescue
+    puts 'Cant read input file'
   end
 end

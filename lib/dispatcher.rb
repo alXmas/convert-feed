@@ -14,12 +14,13 @@ module Dispatcher
 
   def self.run(options, data)
     reader = READERS.find{ |reader| reader.can_call?(data) }
-    feed = reader.call(data)
+    feed = reader.nil? ? raise : reader.call(data)
     parser = PARSERS.find{ |parser| parser.can_call?(feed) }
     body = parser.body(feed)
-    head= parser.head(feed)
     handler = HANDLERS.find{ |handler| handler.can_call?(options) }
-    new_body = handler.call(body)
-    Converter.call(head,new_body,options[:reader])
+    body = handler.nil? ? body : handler.call(body)
+    Converter.call(parser.head(feed),body,options[:reader])
+  rescue
+    puts 'Cant read this data'
   end
 end

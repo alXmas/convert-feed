@@ -5,5 +5,7 @@ module Reverse
 
   def self.call(body)
     body.reverse
+  rescue
+    puts 'Cant reverse'
   end
 end

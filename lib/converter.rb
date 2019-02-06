@@ -20,5 +20,7 @@ module Converter
     end
     puts xml
     File.open('output', 'w') { |file| file.write(xml) }
+  rescue
+    puts 'Cant write to output file'
   end
 end

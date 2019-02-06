@@ -7,5 +7,7 @@ module Sort
     body.sort do |first_item, second_item|
       first_item['DataTime'] <=> second_item['DataTime']
     end
+  rescue
+    puts 'Cant sort'
   end
 end

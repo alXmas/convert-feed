@@ -11,6 +11,8 @@ module RssParser
     body = body.map { |element| Hash.from_xml(element.to_s)['item'] }
     body.each { |elem| elem['DataTime'] = elem.delete('pubDate') }
     body.each { |elem| elem['Text'] = elem.delete('description') }
+  rescue
+    puts 'Cant parse body'
   end
 
   def self.head(feed)
@@ -18,5 +20,7 @@ module RssParser
     head << feed.xpath('//title').first
     head << feed.xpath('//link').first
     head.map { |element| Hash.from_xml(element.to_s) }
+  rescue
+    puts 'Cant parse head'
   end
 end
