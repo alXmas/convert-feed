@@ -20,7 +20,6 @@ module Dispatcher
     head= parser.head(feed)
     handler = HANDLERS.find{ |handler| handler.can_call?(options) }
     new_body = handler.call(body)
-    puts options
     if options[:reader] == 'rss'
       version = '2.0'
     elsif options[:reader] == 'atom'
