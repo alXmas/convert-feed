@@ -14,7 +14,11 @@ OptionParser.new do |opts|
     options[:sort] = s
   end
   opts.on('-o', '--out FORMAT', 'Output feed format: atom/rss ') do |type|
-    options[:reader] = type.downcase
+    if type.downcase == 'rss'
+      options[:reader] = '2.0'
+    else
+      options[:reader] = type.downcase
+    end
   end
   opts.on('-h', '--help', 'Show help message') do
     puts opts

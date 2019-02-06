@@ -6,7 +6,7 @@ module Converter
       maker.channel.title = head[0]['title']
       maker.channel.link = head[1]['link']
       maker.channel.description = 'description'
-      maker.channel.id = 'id'
+      maker.channel.id = head[1]['link']
       maker.channel.updated = Time.now.to_s
       maker.channel.author = 'author'
       body.each do |elem|
