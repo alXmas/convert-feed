@@ -1,10 +1,10 @@
 module Sort
-  def self.option(options = {})
+  def self.can_call?(options = {})
     options.has_key?(:sort)
   end
 
-  def self.call(hash)
-    hash.sort! do |first_item, second_item|
+  def self.call(body)
+    body.sort do |first_item, second_item|
       first_item['DataTime'] <=> second_item['DataTime']
     end
   end

@@ -4,13 +4,13 @@ require 'open-uri'
 require 'nokogiri'
 
 module UrlReader
-  def self.can_read?(source)
+  def self.can_call?(source)
     open(source).status == %w(200 OK)
   rescue
     false
   end
 
-  def self.read(source)
+  def self.call(source)
     Nokogiri::XML(open(source))
   end
 end

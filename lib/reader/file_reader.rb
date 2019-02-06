@@ -3,11 +3,11 @@
 require 'nokogiri'
 
 module FileReader
-  def self.can_read?(source)
+  def self.can_call?(source)
     File.file?(source)
   end
 
-  def self.read(source)
+  def self.call(source)
     File.open(source) { |f| Nokogiri::XML(f) }
   end
 end
