@@ -8,10 +8,10 @@ options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: #{$PROGRAM_NAME} [handler]"
   opts.on('-r', '--[no-]reverse', 'Revers items') do |r|
-    options[:Reverse] = r
+    options[Reverse] = r
   end
   opts.on('-s', '--[no-]sort', 'SortForRss items') do |s|
-    options[:Sort] = s
+    options[Sort] = s
   end
   opts.on('-o', '--out FORMAT', 'Output feed format: atom/rss') do |type|
     options[:reader] = type.downcase

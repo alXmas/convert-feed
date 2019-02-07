@@ -9,7 +9,6 @@ require_relative '../lib/handler/reverse'
 require_relative '../lib/handler/sort'
 require_relative '../lib/converter/atom_converter'
 require_relative '../lib/converter/rss_converter'
-require_relative 'converter'
 
 module Dispatcher
   READERS = [FileReader, UrlReader].freeze
@@ -17,8 +16,7 @@ module Dispatcher
   CONVERTERS = [AtomConverter, RssConverter].freeze
 
   def self.run(options, data)
-    handler = options.select { |_k, v| v == true }
-                     .keys.map { |elem| elem.to_s.classify.constantize }
+    handler = options.select { |_k, v| v == true }.keys
     reader = READERS.find { |reader| reader.can_call?(data) }
     feed = reader.nil? ? raise : reader.call(data)
     parser = PARSERS.find { |parser| parser.can_call?(feed) }

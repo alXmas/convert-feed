@@ -12,7 +12,5 @@ module UrlReader
 
   def self.call(source)
     Nokogiri::XML(open(source))
-  rescue StandardError
-    puts 'Cant read input URL'
   end
 end
