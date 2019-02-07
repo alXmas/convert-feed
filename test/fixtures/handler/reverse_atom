@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <author>
+    <name>author</name>
+  </author>
+  <id>http://example.org/</id>
+  <link href="http://example.org/"/>
+  <subtitle>description</subtitle>
+  <title>Example Feed</title>
+  <updated>2019-02-07T16:39:23+04:00</updated>
+  <entry>
+    <id>http://example.org/2003/12/13/atom03</id>
+    <link href="http://example.org/2003/12/13/atom03"/>
+    <summary>Some text.</summary>
+    <title>Atom-Powered Robots Run Amok</title>
+    <updated>2002-12-13T18:30:02Z</updated>
+    <dc:date>2002-12-13T18:30:02Z</dc:date>
+  </entry>
+  <entry>
+    <id>http://example.org/2003/12/13/atom03</id>
+    <link href="http://example.org/2003/12/13/atom03"/>
+    <summary>Some text.</summary>
+    <title>Atom-Powered Robots Run Amok</title>
+    <updated>2001-12-13T18:30:02Z</updated>
+    <dc:date>2001-12-13T18:30:02Z</dc:date>
+  </entry>
+  <entry>
+    <id>http://example.org/2003/12/13/atom03</id>
+    <link href="http://example.org/2003/12/13/atom03"/>
+    <summary>Some text.</summary>
+    <title>Atom-Powered Robots Run Amok</title>
+    <updated>2004-12-13T18:30:02Z</updated>
+    <dc:date>2004-12-13T18:30:02Z</dc:date>
+  </entry>
+  <dc:date>2019-02-07T16:39:23+04:00</dc:date>
+</feed>

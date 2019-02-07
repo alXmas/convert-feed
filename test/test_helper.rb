@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
+require 'nokogiri'
 require_relative '../lib/reader/file_reader'
 require_relative '../lib/reader/url_reader'
 require_relative '../lib/parser/rss_parser'
