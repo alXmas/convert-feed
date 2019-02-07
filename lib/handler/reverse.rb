@@ -1,11 +1,9 @@
-module Reverse
-  def self.can_call?(options = {})
-    options.has_key?(:reverse)
-  end
+# frozen_string_literal: true
 
+module Reverse
   def self.call(body)
     body.reverse
-  rescue
+  rescue StandardError
     puts 'Cant reverse'
   end
 end

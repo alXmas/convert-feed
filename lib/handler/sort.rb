@@ -1,13 +1,9 @@
-module Sort
-  def self.can_call?(options = {})
-    options.has_key?(:sort)
-  end
+# frozen_string_literal: true
 
+module Sort
   def self.call(body)
-    body.sort do |first_item, second_item|
-      first_item['DataTime'] <=> second_item['DataTime']
-    end
-  rescue
+    body.sort_by { |a| a['DataTime'] }
+  rescue StandardError
     puts 'Cant sort'
   end
 end

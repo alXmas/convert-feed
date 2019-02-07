@@ -5,14 +5,14 @@ require 'nokogiri'
 
 module UrlReader
   def self.can_call?(source)
-    open(source).status == %w(200 OK)
-  rescue
+    open(source).status == %w[200 OK]
+  rescue StandardError
     false
   end
 
   def self.call(source)
     Nokogiri::XML(open(source))
-  rescue
+  rescue StandardError
     puts 'Cant read input URL'
   end
 end

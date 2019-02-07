@@ -1,8 +1,14 @@
-require "rss"
+# frozen_string_literal: true
 
-module Converter
-  def self.call(head, body, version)
-    xml = RSS::Maker.make(version) do |maker|
+require 'rss'
+
+module RssConverter
+  def self.can_call?(options)
+    options[:reader] == 'rss'
+  end
+
+  def self.call(head, body)
+    rss = RSS::Maker.make('2.0') do |maker|
       maker.channel.title = head[0]['title']
       maker.channel.link = head[1]['link']
       maker.channel.description = 'description'
@@ -18,9 +24,7 @@ module Converter
         end
       end
     end
-    puts xml
-    File.open('output', 'w') { |file| file.write(xml) }
-  rescue
-    puts 'Cant write to output file'
+    puts rss
+    File.open('output', 'w') { |file| file.write(rss) }
   end
 end

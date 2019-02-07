@@ -34,21 +34,19 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_sort
-    data = [ { 'title' => 'Firsr title',
-               'DataTime' => 'Thu, 05 Mar 2015 14:56:47 +0000' },
-             { 'title' => 'Second title',
-               'DataTime' => 'Wed, 25 Mar 2015 12:05:14 +0000' },
-             { 'title' => 'Third',
-                           'DataTime' => 'Thu, 03 Jan 2019 09:37:13 +0000' } ]
+    data = [{ 'title' => 'Firsr title',
+              'DataTime' => 'Thu, 05 Mar 2015 14:56:47 +0000' },
+            { 'title' => 'Second title',
+              'DataTime' => 'Wed, 25 Mar 2015 12:05:14 +0000' },
+            { 'title' => 'Third',
+              'DataTime' => 'Thu, 03 Jan 2019 09:37:13 +0000' }]
     sort = Sort.call(data)
-    date = data.sort do |first_item, second_item|
-      first_item['DataTime'] <=> second_item['DataTime']
-    end
+    date = data.sort_by { |a| a['DataTime'] }
     assert_equal date, sort
   end
 
   def test_in_rss_out_atom
-    options = {:sort=>true, :reader=>"atom"}
+    options = { reader: 'atom' }
     feed = 'test/fixtures/rss'
     Dispatcher.run(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }
@@ -56,11 +54,26 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_in_rss_out_rss
-    options = {:sort=>true, reader: '2.0' }
-    feed = 'test/fixtures/rss'''
+    options = { reader: 'rss' }
+    feed = 'test/fixtures/rss'
     Dispatcher.run(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }
     assert_equal out.xpath('/rss').present?, true
   end
 
+  def test_in_atom_out_rss
+    options = { reader: 'rss' }
+    feed = 'test/fixtures/atom'
+    Dispatcher.run(options, feed)
+    out = File.open('output') { |f| Nokogiri::XML(f) }
+    assert_equal out.xpath('/rss').present?, true
+  end
+
+  def test_in_atom_out_atom
+    options = { reader: 'atom' }
+    feed = 'test/fixtures/atom'
+    Dispatcher.run(options, feed)
+    out = File.open('output') { |f| Nokogiri::XML(f) }
+    assert_equal out.xpath('/rss').present?, false
+  end
 end
