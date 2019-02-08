@@ -7,7 +7,9 @@ module AtomConverter
     options[:reader] == 'atom'
   end
 
-  def self.call(head, body)
+  def self.call(data = {})
+    head = data[:head]
+    body = data[:body]
     atom = RSS::Maker.make('atom') do |maker|
       maker.channel.title = head[0]['title']
       maker.channel.link = head[1]['link']

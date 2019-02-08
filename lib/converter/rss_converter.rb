@@ -7,7 +7,9 @@ module RssConverter
     options[:reader] == 'rss'
   end
 
-  def self.call(head, body)
+  def self.call(data = {})
+    head = data[:head]
+    body = data[:body]
     rss = RSS::Maker.make('2.0') do |maker|
       maker.channel.title = head[0]['title']
       maker.channel.link = head[1]['link']

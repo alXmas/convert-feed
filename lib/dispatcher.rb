@@ -20,7 +20,7 @@ module Dispatcher
     handlers = options[:handlers].keys.map { |type| type.to_s.classify.constantize }
     handlers.nil? ? body : handlers.each { |item| body = item.call(body) }
     converter = CONVERTERS.find { |converter| converter.can_call?(options) }
-    converter.call(head, body)
+    converter.call(head: head, body: body)
   rescue StandardError
     puts 'Cant read this data'
   end
