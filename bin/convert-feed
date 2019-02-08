@@ -22,5 +22,4 @@ OptionParser.new do |opts|
 end.parse!
 
 abort('Missing flag or input') if ARGV.empty?
-puts options
-# Dispatcher.run(options, ARGV.first)
+Dispatcher.run(options, ARGV.first)
