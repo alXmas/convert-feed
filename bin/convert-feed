@@ -4,14 +4,14 @@
 require 'optparse'
 require_relative '../lib/dispatcher'
 
-options = {}
+options = { handlers: {} }
 OptionParser.new do |opts|
   opts.banner = "Usage: #{$PROGRAM_NAME} [handler]"
   opts.on('-r', '--[no-]reverse', 'Revers items') do |r|
-    options[Reverse] = r
+    options[:handlers][:reverse] = r
   end
   opts.on('-s', '--[no-]sort', 'SortForRss items') do |s|
-    options[Sort] = s
+    options[:handlers][:sort] = s
   end
   opts.on('-o', '--out FORMAT', 'Output feed format: atom/rss') do |type|
     options[:reader] = type.downcase
@@ -22,4 +22,5 @@ OptionParser.new do |opts|
 end.parse!
 
 abort('Missing flag or input') if ARGV.empty?
-Dispatcher.run(options, ARGV.first)
+puts options
+# Dispatcher.run(options, ARGV.first)

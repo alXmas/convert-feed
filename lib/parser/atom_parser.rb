@@ -9,9 +9,9 @@ module AtomParser
     false
   end
 
-  def self.body(feed)
+  def self.body(data)
     body = []
-    feed.xpath('//xmlns:entry').each { |elem| body << elem }
+    data.xpath('//xmlns:entry').each { |elem| body << elem }
     body = body.map { |element| Hash.from_xml(element.to_s)['entry'] }
     body.each { |elem| elem['DataTime'] = elem.delete('updated') }
     body.each { |elem| elem['Text'] = elem.delete('summary') }
@@ -20,10 +20,10 @@ module AtomParser
     puts 'Cant parse body'
   end
 
-  def self.head(feed)
+  def self.head(data)
     head = []
-    head << feed.xpath('//xmlns:title').first
-    head << "<link>#{feed.xpath('//xmlns:link').first['href']}</link>"
+    head << data.xpath('//xmlns:title').first
+    head << "<link>#{data.xpath('//xmlns:link').first['href']}</link>"
     head.map { |element| Hash.from_xml(element.to_s) }
   rescue StandardError
     puts 'Cant parse head'

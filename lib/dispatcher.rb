@@ -11,15 +11,16 @@ module Dispatcher
   PARSERS = [AtomParser, RssParser].freeze
   CONVERTERS = [AtomConverter, RssConverter].freeze
 
-  def self.run(options, data)
-    handler = options.select { |_k, v| v == true }.keys
-    reader = READERS.find { |reader| reader.can_call?(data) }
-    feed = reader.nil? ? raise : reader.call(data)
-    parser = PARSERS.find { |parser| parser.can_call?(feed) }
-    body = parser.body(feed)
-    handler.nil? ? body : handler.each { |item| body = item.call(body) }
+  def self.run(options, source)
+    reader = READERS.find { |reader| reader.can_call?(source) }
+    data = reader.nil? ? raise : reader.call(source)
+    parser = PARSERS.find { |parser| parser.can_call?(data) }
+    body = parser.body(data)
+    head = parser.head(data)
+    handlers = options[:handlers].keys.map { |type| type.to_s.classify.constantize }
+    handlers.nil? ? body : handlers.each { |item| body = item.call(body) }
     converter = CONVERTERS.find { |converter| converter.can_call?(options) }
-    converter.call(parser.head(feed), body)
+    converter.call(head, body)
   rescue StandardError
     puts 'Cant read this data'
   end

@@ -46,7 +46,7 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_in_rss_out_atom
-    options = { reader: 'atom' }
+    options = { handlers: {}, reader: 'atom' }
     feed = 'test/fixtures/rss'
     Dispatcher.run(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }
@@ -54,7 +54,7 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_in_rss_out_rss
-    options = { reader: 'rss' }
+    options = { handlers: {}, reader: 'rss' }
     feed = 'test/fixtures/rss'
     Dispatcher.run(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }
@@ -62,7 +62,7 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_in_atom_out_rss
-    options = { reader: 'rss' }
+    options = { handlers: {}, reader: 'rss' }
     feed = 'test/fixtures/atom'
     Dispatcher.run(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }
@@ -70,15 +70,15 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_in_atom_out_atom
-    options = { reader: 'atom' }
-    feed = 'test/fixtures/atom'
-    Dispatcher.run(options, feed)
+    options = { reader: 'atom', handlers: {} }
+    source = 'test/fixtures/atom'
+    Dispatcher.run(options, source)
     out = File.open('output') { |f| Nokogiri::XML(f) }
-    assert_equal out.xpath('/rss').present?, false
+    assert_equal false, out.xpath('/rss').present?
   end
 
   def test_reverse_rss
-    options = { reader: 'rss', Reverse => true }
+    options = { reader: 'rss', handlers: { reverse: true } }
     feed = 'test/fixtures/rss'
     Dispatcher.run(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }
@@ -87,7 +87,7 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_sort_rss
-    options = { reader: 'rss', Sort => true }
+    options = { reader: 'rss', handlers: { sort: true } }
     feed = 'test/fixtures/rss'
     Dispatcher.run(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }
@@ -96,16 +96,16 @@ class ConvertFeedTest < Minitest::Test
   end
 
   def test_sort_atom
-    options = { reader: 'atom', Sort => true }
+    options = { reader: 'atom', handlers: { sort: true } }
     feed = 'test/fixtures/atom'
     Dispatcher.run(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }
     standard = File.open('test/fixtures/handler/sort_atom') { |f| Nokogiri::XML(f) }
-    assert_equal out.xpath('//xmlns:entry').text, standard.xpath('//xmlns:entry').text
+    assert_equal standard.xpath('//xmlns:entry').text, out.xpath('//xmlns:entry').text
   end
 
   def test_reverse_atom
-    options = { reader: 'atom', Reverse => true }
+    options = { reader: 'atom', handlers: { reverse: true } }
     feed = 'test/fixtures/atom'
     Dispatcher.run(options, feed)
     out = File.open('output') { |f| Nokogiri::XML(f) }

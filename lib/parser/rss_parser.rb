@@ -7,9 +7,9 @@ module RssParser
     feed.xpath('/rss').present?
   end
 
-  def self.body(feed)
+  def self.body(data)
     body = []
-    feed.xpath('//item').each { |elem| body << elem }
+    data.xpath('//item').each { |elem| body << elem }
     body = body.map { |element| Hash.from_xml(element.to_s)['item'] }
     body.each { |elem| elem['DataTime'] = elem.delete('pubDate') }
     body.each { |elem| elem['Text'] = elem.delete('description') }
@@ -17,10 +17,10 @@ module RssParser
     puts 'Cant parse body'
   end
 
-  def self.head(feed)
+  def self.head(data)
     head = []
-    head << feed.xpath('//title').first
-    head << feed.xpath('//link').first
+    head << data.xpath('//title').first
+    head << data.xpath('//link').first
     head.map { |element| Hash.from_xml(element.to_s) }
   rescue StandardError
     puts 'Cant parse head'

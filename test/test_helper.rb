@@ -2,6 +2,7 @@
 
 require 'minitest/autorun'
 require 'nokogiri'
+require 'active_support/all'
 require 'require_all'
 require_all 'lib/reader'
 require_all 'lib/parser'
