@@ -11,7 +11,7 @@ module RssParser
     body = []
     data.xpath('//item').each { |elem| body << elem }
     body = body.map { |element| Hash.from_xml(element.to_s)['item'] }
-    body.each { |elem| elem['DataTime'] = elem.delete('pubDate') }
+    body.each { |elem| elem['data_time'] = elem.delete('pubDate') }
     body.each { |elem| elem['Text'] = elem.delete('description') }
   rescue StandardError
     puts 'Cant parse body'

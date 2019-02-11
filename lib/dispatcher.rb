@@ -7,9 +7,12 @@ require_all 'lib/handler'
 require_all 'lib/converter'
 
 module Dispatcher
-  READERS = [FileReader, UrlReader].freeze
-  PARSERS = [AtomParser, RssParser].freeze
-  CONVERTERS = [AtomConverter, RssConverter].freeze
+  READERS = Dir.children('lib/reader')
+               .map { |x| File.basename(x, '.*').classify.constantize }
+  PARSERS = Dir.children('lib/parser')
+               .map { |x| File.basename(x, '.*').classify.constantize }
+  CONVERTERS = Dir.children('lib/converter')
+                  .map { |x| File.basename(x, '.*').classify.constantize }
 
   def self.run(options, source)
     reader = READERS.find { |reader| reader.can_call?(source) }
@@ -17,7 +20,8 @@ module Dispatcher
     parser = PARSERS.find { |parser| parser.can_call?(data) }
     body = parser.body(data)
     head = parser.head(data)
-    handlers = options[:handlers].keys.map { |type| type.to_s.classify.constantize }
+    handlers = options[:handlers].keys
+                                 .map { |type| type.to_s.classify.constantize }
     handlers.nil? ? body : handlers.each { |item| body = item.call(body) }
     converter = CONVERTERS.find { |converter| converter.can_call?(options) }
     converter.call(head: head, body: body)

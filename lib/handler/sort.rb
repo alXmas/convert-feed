@@ -2,7 +2,7 @@
 
 module Sort
   def self.call(body)
-    body.sort_by { |a| a['DataTime'] }
+    body.sort_by { |a| a['data_time'] }
   rescue StandardError
     puts 'Cant sort'
   end

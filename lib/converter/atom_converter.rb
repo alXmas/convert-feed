@@ -21,7 +21,7 @@ module AtomConverter
         maker.items.new_item do |item|
           item.title = elem['title']
           item.link = elem['link']
-          item.updated = elem['DataTime']
+          item.updated = elem['data_time']
           item.description = elem['Text']
         end
       end

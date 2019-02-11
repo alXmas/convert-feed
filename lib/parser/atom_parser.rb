@@ -13,7 +13,7 @@ module AtomParser
     body = []
     data.xpath('//xmlns:entry').each { |elem| body << elem }
     body = body.map { |element| Hash.from_xml(element.to_s)['entry'] }
-    body.each { |elem| elem['DataTime'] = elem.delete('updated') }
+    body.each { |elem| elem['data_time'] = elem.delete('updated') }
     body.each { |elem| elem['Text'] = elem.delete('summary') }
     body.each { |elem| elem['link'] = elem['link']['href'] }
   rescue StandardError
