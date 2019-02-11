@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-# require_relative 'active_support/all'
 require 'minitest/autorun'
-require 'nokogiri'
-require 'require_all'
-require_all 'lib'
+Dir.glob('lib/**/*.rb') { |f| require(f) }
 require_relative '../lib/dispatcher'
