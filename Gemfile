@@ -9,7 +9,8 @@ gem 'nokogiri'
 gem 'require_all'
 
 group :test do
-  gem 'minitest'
+  gem 'minitest', group: :test
+  gem 'minitest-reporters', group: :test
 end
 
 group :development do
