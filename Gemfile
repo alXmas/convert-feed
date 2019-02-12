@@ -7,4 +7,5 @@ ruby '2.6.0'
 
 gem 'minitest', group: :test
 gem 'nokogiri'
+gem 'require_all'
 gem 'rubocop', require: false, group: :development

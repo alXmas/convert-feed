@@ -1,6 +1,10 @@
 # frozen_string_literal: true
-
-Dir.glob('lib/**/*.rb') { |f| require(f) }
+#
+require 'require_all'
+require_all 'lib/reader'
+require_all 'lib/parser'
+require_all 'lib/handler'
+require_all 'lib/converter'
 
 module Dispatcher
   READERS = Dir.children('lib/reader')

@@ -12,6 +12,7 @@ GEM
       ast (~> 2.4.0)
     powerpack (0.1.2)
     rainbow (3.0.0)
+    require_all (2.0.0)
     rubocop (0.63.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -29,6 +30,7 @@ PLATFORMS
 DEPENDENCIES
   minitest
   nokogiri
+  require_all
   rubocop
 
 RUBY VERSION
