@@ -7,6 +7,6 @@ module RssConverter
   end
 
   def self.call(data = {})
-    Converter.call(data, '2.0')
+    ConverterHelper.(data, '2.0')
   end
 end

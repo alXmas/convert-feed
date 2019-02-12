@@ -7,8 +7,8 @@ class ConvertFeedTest < Minitest::Test
     options = { reader: 'rss', handlers: { reverse: true } }
     feed = 'test/fixtures/rss'
     Dispatcher.run(options, feed)
-    out = File.open('output') { |f| Nokogiri::XML(f) }
-    standard = File.open('test/fixtures/handler/reverse_rss') { |f| Nokogiri::XML(f) }
+    out = File.nokogiri_read('output')
+    standard = File.nokogiri_read('test/fixtures/handler/reverse_rss')
     assert_equal out.xpath('//item').text, standard.xpath('//item').text
   end
 
@@ -16,8 +16,8 @@ class ConvertFeedTest < Minitest::Test
     options = { reader: 'rss', handlers: { sort: true } }
     feed = 'test/fixtures/rss'
     Dispatcher.run(options, feed)
-    out = File.open('output') { |f| Nokogiri::XML(f) }
-    standard = File.open('test/fixtures/handler/sort_rss') { |f| Nokogiri::XML(f) }
+    out = File.nokogiri_read('output')
+    standard = File.nokogiri_read('test/fixtures/handler/sort_rss')
     assert_equal out.xpath('//item').text, standard.xpath('//item').text
   end
 
@@ -25,8 +25,8 @@ class ConvertFeedTest < Minitest::Test
     options = { reader: 'atom', handlers: { sort: true } }
     feed = 'test/fixtures/atom'
     Dispatcher.run(options, feed)
-    out = File.open('output') { |f| Nokogiri::XML(f) }
-    standard = File.open('test/fixtures/handler/sort_atom') { |f| Nokogiri::XML(f) }
+    out = File.nokogiri_read('output')
+    standard = File.nokogiri_read('test/fixtures/handler/sort_atom')
     assert_equal standard.xpath('//xmlns:entry').text, out.xpath('//xmlns:entry').text
   end
 
@@ -34,8 +34,8 @@ class ConvertFeedTest < Minitest::Test
     options = { reader: 'atom', handlers: { reverse: true } }
     feed = 'test/fixtures/atom'
     Dispatcher.run(options, feed)
-    out = File.open('output') { |f| Nokogiri::XML(f) }
-    standard = File.open('test/fixtures/handler/reverse_atom') { |f| Nokogiri::XML(f) }
+    out = File.nokogiri_read('output')
+    standard = File.nokogiri_read('test/fixtures/handler/reverse_atom')
     assert_equal out.xpath('//xmlns:entry').text, standard.xpath('//xmlns:entry').text
   end
 end

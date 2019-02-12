@@ -8,6 +8,6 @@ module AtomConverter
   end
 
   def self.call(data = {})
-    Converter.call(data, 'atom')
+    ConverterHelper.build_xml(data, 'atom')
   end
 end

@@ -2,8 +2,8 @@
 
 require 'rss'
 
-module Converter
-  def self.call(data = {}, version)
+module ConverterHelper
+  def self.build_xml(data = {}, version)
     head = data[:head]
     body = data[:body]
     xml = RSS::Maker.make(version) do |maker|
