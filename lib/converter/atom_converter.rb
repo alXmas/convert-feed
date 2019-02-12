@@ -3,7 +3,6 @@
 require_relative 'concerns/converter'
 
 module AtomConverter
-
   def self.can_call?(options)
     options[:reader] == 'atom'
   end
