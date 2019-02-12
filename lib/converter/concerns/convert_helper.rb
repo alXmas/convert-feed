@@ -2,7 +2,7 @@
 
 require 'rss'
 
-module ConverterHelper
+module ConvertHelper
   def self.build_xml(data = {}, version)
     head = data[:head]
     body = data[:body]

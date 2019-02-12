@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'concerns/converter'
+require_relative 'concerns/convert_helper'
 
 module AtomConverter
   def self.can_call?(options)
@@ -8,6 +8,6 @@ module AtomConverter
   end
 
   def self.call(data = {})
-    ConverterHelper.build_xml(data, 'atom')
+    ConvertHelper.build_xml(data, 'atom')
   end
 end

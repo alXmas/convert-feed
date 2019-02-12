@@ -7,7 +7,7 @@ class RssConverterTest < Minitest::Test
     options = { handlers: {}, reader: 'atom' }
     feed = 'test/fixtures/rss'
     Dispatcher.run(options, feed)
-    out = File.nokogiri_read('output')
+    out = NokogiriFile.read('output')
     assert_equal out.xpath('/rss').present?, false
   end
 
@@ -15,7 +15,7 @@ class RssConverterTest < Minitest::Test
     options = { handlers: {}, reader: 'rss' }
     feed = 'test/fixtures/rss'
     Dispatcher.run(options, feed)
-    out = File.read('output')
+    out = NokogiriFile.read('output')
     assert out.xpath('/rss').present?
   end
 end

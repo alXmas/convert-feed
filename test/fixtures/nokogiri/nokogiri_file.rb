@@ -2,8 +2,8 @@
 
 require 'nokogiri'
 
-class File
-  def self.nokogiri_read(sourse)
+class NokogiriFile
+  def self.read(sourse)
     File.open(sourse) { |f| Nokogiri::XML(f) }
   end
 end
