@@ -11,8 +11,9 @@ module Dispatcher
                .map { |x| File.basename(x, '.rb').classify.constantize }
   PARSERS = Dir.children('lib/parser')
                .map { |x| File.basename(x, '.rb').classify.constantize }
-  CONVERTERS = Dir.children('lib/converter')
-                  .map { |x| File.basename(x, '.rb').classify.constantize }
+  CONVERTERS = Dir.glob('lib/converter/*')
+                   .select { |x| !File.directory?(x)}
+                   .map { |x| File.basename(x, '.rb').classify.constantize }
 
   def self.run(options, source)
     reader = READERS.find { |reader| reader.can_call?(source) }

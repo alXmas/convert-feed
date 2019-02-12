@@ -7,7 +7,7 @@ class AtomConverterTest < Minitest::Test
     options = { handlers: {}, reader: 'rss' }
     feed = 'test/fixtures/atom'
     Dispatcher.run(options, feed)
-    out = File.open('output') { |f| Nokogiri::XML(f) }
+    out = File.read('output')
     assert out.xpath('/rss').present?
   end
 
@@ -15,7 +15,7 @@ class AtomConverterTest < Minitest::Test
     options = { reader: 'atom', handlers: {} }
     source = 'test/fixtures/atom'
     Dispatcher.run(options, source)
-    out = File.open('output') { |f| Nokogiri::XML(f) }
+    out = File.read('output')
     assert_equal false, out.xpath('/rss').present?
   end
 end
