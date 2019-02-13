@@ -15,11 +15,11 @@ Usage: /usr/local/bin/convert-feed [options]
 
 ## Пример использования:
 ```
-convert-feed --out rss feed.xml
-convert-feed --out atom https://ru.hexlet.io/lessons.rss
+bin/convert-feed --out rss feed.xml
+bin/convert-feed --out atom https://ru.hexlet.io/lessons.rss
 ```
 
 ## Запуск тестов:
 ```
-make test
+make
 ```
