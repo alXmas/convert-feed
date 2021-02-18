@@ -21,5 +21,5 @@ bin/convert-feed --out atom https://ru.hexlet.io/lessons.rss
 
 ## Запуск тестов:
 ```
-make
+make test
 ```
